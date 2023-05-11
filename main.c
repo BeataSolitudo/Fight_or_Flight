@@ -9,13 +9,33 @@
 typedef struct{
     int HP;
     float LVL;
-    int sila;
+    int power;
     char *specialni_schopnost[VEL];
 } POSTAVA;
 
+void moznosti_pro_vyfuka_1()
+{
+    printf("Tve dny jsou secteny, ponevadz na tebe doma ceka matka, neni uniku.\n");
+    printf("GAME OVER\n");
+}
+
+void moznosti_pro_vyfuka_2()
+{
+    printf("Jsi student, nemas penize.\n");
+    printf("GAME OVER\n");
+}
+
 int main() {
     // Variables
-    char moznosti_pro_vyfuka;
+        //NPCs
+        char moznosti_pro_vyfuka;
+        char moznosti_pro_recepcni;
+
+        //Player
+        int player_HP;
+        int player_disengage_LVL;
+        int player_power;
+        float player_overall_LVL;
 
 
     //Vyfuk
@@ -26,13 +46,11 @@ int main() {
 
     switch(moznosti_pro_vyfuka){
         case '1':
-            printf("Tve dny jsou secteny, ponevadz na tebe doma ceka matka, neni uniku.\n");
-            printf("GAME OVER\n");
+            moznosti_pro_vyfuka_1();
             return 1;
 
         case '2':
-            printf("Jsi student, nemas penize.\n");
-            printf("GAME OVER\n");
+            moznosti_pro_vyfuka_2();
             return 1;
 
         case '3':
@@ -40,7 +58,9 @@ int main() {
             break;
 
         case '4':
-            printf("test\n");
+            printf("Prosel jsi, nyni vstupujes do skoly, recepcni ti nabizi kridu, prijmes tuto pochutinu?\n");
+            printf("1) Ano. 2) Ne.\n");
+            scanf("%s", &moznosti_pro_recepcni);
             break;
 
         default: printf("ERROR");
@@ -64,3 +84,6 @@ int main() {
 
     return 0;
 }
+
+
+
