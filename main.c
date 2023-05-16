@@ -6,6 +6,16 @@
 #include <stdbool.h>
 #include <unistd.h>
 
+typedef struct{
+    //Player
+    float player_HP;
+    float player_disengage_LVL;
+    float player_power;
+    float player_overall_LVL;
+    float player_cash;
+} PLAYER;
+
+
 void janitor(float *player_HP, float *player_disengage_LVL, float *player_power, float *player_overall_LVL, float *player_cash, bool *janitor_B, int *current_stage);
 void muller(float *player_HP, float *player_disengage_LVL, float *player_power, float *player_overall_LVL, float *player_cash, bool *muller_B, bool *muller_B_quest, int *current_stage);
 void gibi(float *player_HP, float *player_disengage_LVL, float *player_power, float *player_overall_LVL, float *player_cash, bool *gibi_B, int *current_stage, bool *muller_B_quest);
@@ -23,14 +33,15 @@ int main() {
     bool muller_B_quest = 0;
     bool gibi_B = 0;
 
-    //Player
-    float player_HP = 100;
-    float player_disengage_LVL = 10;
-    float player_power = 20;
-    float player_overall_LVL;
-    float player_cash = 600;
+    PLAYER me;
 
-    player_overall_LVL = player_HP+player_disengage_LVL+player_power;
+    me.player_HP = 100;
+    me.player_disengage_LVL = 10;
+    me.player_power = 20;
+    me.player_overall_LVL;
+    me.player_cash = 600;
+
+    me.player_overall_LVL = me.player_HP+me.player_disengage_LVL+me.player_power;
 
     // Initial dialog
     printf("You are just entering the school, as always late, but this time you have forgotten your ISIC, you ask if the janitor will open the door for you, he doesn't, now you are being challenged by the janitor, ISIC or life he tells you.\n");
@@ -42,12 +53,12 @@ int main() {
         {
             case 1:
                 //if(janitor_B == 1){continue;}
-                janitor(&player_HP, &player_disengage_LVL, &player_power, &player_overall_LVL, &player_cash, &janitor_B, &current_stage);
+                janitor(&me.player_HP, &me.player_disengage_LVL, &me.player_power, &me.player_overall_LVL, &me.player_cash, &janitor_B, &current_stage);
                 break;
 
             case 2:
                 //if(muller_B == 1){continue;}
-                muller(&player_HP, &player_disengage_LVL, &player_power, &player_overall_LVL, &player_cash, &muller_B, &muller_B_quest, &current_stage);
+                muller(&me.player_HP, &me.player_disengage_LVL, &me.player_power, &me.player_overall_LVL, &me.player_cash, &muller_B, &muller_B_quest, &current_stage);
                 break;
 
             case 0:
@@ -59,7 +70,7 @@ int main() {
                 break;
 
             case 3:
-                gibi(&player_HP, &player_disengage_LVL, &player_power, &player_overall_LVL, &player_cash, &gibi_B, &current_stage, &muller_B_quest);
+                gibi(&me.player_HP, &me.player_disengage_LVL, &me.player_power, &me.player_overall_LVL, &me.player_cash, &gibi_B, &current_stage, &muller_B_quest);
                 break;
 
         }
