@@ -28,7 +28,7 @@ int main() {
     float player_disengage_LVL = 10;
     float player_power = 20;
     float player_overall_LVL;
-    float player_cash = 550;
+    float player_cash = 600;
 
     player_overall_LVL = player_HP+player_disengage_LVL+player_power;
 
@@ -41,12 +41,12 @@ int main() {
         switch(current_stage)
         {
             case 1:
-                if(janitor_B == 1){continue;}
+                //if(janitor_B == 1){continue;}
                 janitor(&player_HP, &player_disengage_LVL, &player_power, &player_overall_LVL, &player_cash, &janitor_B, &current_stage);
                 break;
 
             case 2:
-                if(muller_B == 1){ continue;}
+                //if(muller_B == 1){continue;}
                 muller(&player_HP, &player_disengage_LVL, &player_power, &player_overall_LVL, &player_cash, &muller_B, &muller_B_quest, &current_stage);
                 break;
 
@@ -60,6 +60,7 @@ int main() {
 
             case 3:
                 gibi(&player_HP, &player_disengage_LVL, &player_power, &player_overall_LVL, &player_cash, &gibi_B, &current_stage, &muller_B_quest);
+                break;
 
         }
 
@@ -116,11 +117,13 @@ int player_disengage_success = 0;
             printf("Me: Yes sir, indeed it is.\n");
             printf("Muller: How's your cat? Do you have a cat? Never mind, I have a quest for you, student.\n");
             printf("Muller: I lost my solution book, can you help me find it? I went to talk to Gibi and I must have left my notebook in the hallway. Could you pick it up for me?\n");
+            sleep(14);
             }
             else{
                 printf("Thank you student! Here take some cash for your hard doing. Buy your cat something nice!\n");
                 muller_B_quest_f = 0;
                 player_cash_f += 400;
+                sleep(7);
             }
             break;
 
@@ -166,13 +169,15 @@ int player_disengage_success = 0;
             printf("You went to gym with Mr. Muller, you are jacked as fuck, your power LVL has increased by 15.\n");
             player_power_f += 15;
             player_cash_f -= 200;
+            sleep(6);
+            system("cls");
             break;
 
 
     }
 
 // Decide where to go
-current_stage_f = 100;
+current_stage_f = 0;
 
 // Here you return.
 *player_HP = player_HP_f;
@@ -287,7 +292,7 @@ char where_to_go;
     printf("_____|      |____\n");
     printf("|\t\t|\n");
     printf("|\t\t|\n");
-    printf("|\t\t|\n");
+    printf("|\t       3|\n");
     printf("|__up______up___|\n");
 
     printf("1) Janitor. 2) Up. 3) Muller.\n");
@@ -322,7 +327,7 @@ void stage_one_hundred(int *current_stage)
 int current_stage_f = *current_stage;
 char where_to_go;
 
-    printf("Your options are: 1) Kubi. 2) Gibi. 3) Down.\n");
+    printf("Your options are: 1) X. 2) Gibi. 3) Down.\n");
     printf("_________________\n");
     printf("|     |   |\t|\n");
     printf("|     |   |\t|\n");
@@ -339,7 +344,7 @@ char where_to_go;
     here:
     if(where_to_go == '1')
     {
-        current_stage_f = 4;
+        current_stage_f = 100;
     }
     else if(where_to_go == '2')
     {
@@ -387,11 +392,32 @@ char gibi_options;
         case '1':
             printf("Hey, student, Muller sent you, right? Here's his notebook, he left it here when we had our philosophical debate about cottages. Here take it.\n");
             muller_B_quest_f = 1;
+            current_stage_f = 100;
+            sleep(5);
+            system("cls");
             break;
 
         case '2':
-            printf("\n");
+            printf("You know, student, once when my husband and I were in the garden, a gypsy walked by and suddenly took off his pants and went to take a shit, I tell you, he wasn't worth my dog. And so my vigorous husband ran after him, the gypsy went \"oooh oooh oooh\" and started running.\n");
+            printf("...\n");
+            printf("Have a great day.\n");
+            current_stage_f = 100;
+            sleep(18);
             break;
+
+        case'3':
+            if(player_cash_f < 200)
+            {
+                printf("You are student, you have no money\n");
+                current_stage_f = 100;
+            }
+            else
+            {
+                printf("You are now a bit smarter\n");
+                printf("Your disengage LVL has increase by 5\n");
+                player_disengage_LVL_f += 5;
+                current_stage_f = 100;
+            }
     }
 
 
